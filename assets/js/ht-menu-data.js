@@ -71,14 +71,6 @@ window.HT_MENU = {
           { label: "Smart Parking", href: "https://hyperthings.ai/smart-parking/" },
         ],
       },
-      {
-        label: "Smart Agriculture",
-        href: "https://hyperthings.ai/smart-agriculture/",
-        items: [
-          { label: "Smart Irrigation", href: "https://hyperthings.ai/smart-irrigation/" },
-          { label: "Animal Tracking", href: "https://hyperthings.ai/animal-tracking/" },
-        ],
-      },
     ],
   },
   ai: {
