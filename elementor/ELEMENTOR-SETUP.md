@@ -7,6 +7,7 @@
 | `index.html` | Full local preview (open in browser) |
 | `assets/css/ht-home.css` | All styles (Geist + Inter, animations, mobile) |
 | `assets/js/vendor/three.min.js` | Three.js (WebGL globe) |
+| `assets/js/ht-menu-data.js` | Header mega menu product lists (synced with hyperthings.ai) |
 | `assets/js/ht-globe.js` | Realistic 3D Earth in the CTA section |
 | `assets/js/ht-home.js` | Menu, sticky header, carousel, scroll reveal |
 | `elementor/html-widget.html` | Paste into one Elementor HTML widget |
@@ -23,6 +24,7 @@ Upload these to your theme or Media Library / child theme:
 
 - `assets/css/ht-home.css`
 - `assets/js/vendor/three.min.js`
+- `assets/js/ht-menu-data.js`
 - `assets/js/ht-globe.js`
 - `assets/js/ht-home.js`
 - `assets/fonts/` (Geist-Light / Regular / Medium / SemiBold `.woff2`)
@@ -72,15 +74,16 @@ add_action('wp_enqueue_scripts', function () {
   if (!is_front_page()) return; // or is_page('home')
   $base = get_stylesheet_directory_uri() . '/hyperthings';
 
-  wp_enqueue_style('ht-home', $base . '/ht-home.css', [], '1.0.23');
+  wp_enqueue_style('ht-home', $base . '/ht-home.css', [], '1.0.28');
 
+  wp_enqueue_script('ht-menu-data', $base . '/ht-menu-data.js', [], '1.0.28', true);
   wp_enqueue_script('ht-three', $base . '/vendor/three.min.js', [], '0.160.0', true);
-  wp_enqueue_script('ht-globe', $base . '/ht-globe.js', ['ht-three'], '1.0.23', true);
-  wp_enqueue_script('ht-home', $base . '/ht-home.js', [], '1.0.23', true);
+  wp_enqueue_script('ht-globe', $base . '/ht-globe.js', ['ht-three'], '1.0.28', true);
+  wp_enqueue_script('ht-home', $base . '/ht-home.js', ['ht-menu-data'], '1.0.28', true);
 });
 ```
 
-**Order matters:** `three.min.js` → `ht-globe.js` → `ht-home.js`.
+**Order matters:** `ht-menu-data.js` → `three.min.js` → `ht-globe.js` → `ht-home.js`.
 
 **Or** Elementor Pro → Custom Code: paste `<link>` / `<script>` tags pointing to the uploaded URLs (Body End for JS, Head for CSS).
 

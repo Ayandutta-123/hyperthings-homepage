@@ -20,8 +20,193 @@
     var header = root.querySelector(".ht-header");
     var menuBtn = root.querySelector(".ht-menu-btn");
     var overlay = root.querySelector(".ht-overlay");
-    var closeBtn = root.querySelector(".ht-overlay__close");
-    var overlayLinks = root.querySelectorAll(".ht-overlay__nav a");
+    var menuRoot = root.querySelector("[data-ht-menu-root]");
+    var activePanel = "company";
+
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function linkList(links) {
+      return links
+        .map(function (item) {
+          return (
+            '<a class="ht-mega__link" href="' +
+            esc(item.href) +
+            '">' +
+            esc(item.label) +
+            "</a>"
+          );
+        })
+        .join("");
+    }
+
+    function groupedPanel(groups) {
+      return (
+        '<div class="ht-mega__groups">' +
+        groups
+          .map(function (group) {
+            var head =
+              '<a class="ht-mega__group-title" href="' +
+              esc(group.href) +
+              '">' +
+              esc(group.label) +
+              "</a>";
+            var items = group.items
+              .map(function (item) {
+                return (
+                  '<li><a href="' +
+                  esc(item.href) +
+                  '">' +
+                  esc(item.label) +
+                  "</a></li>"
+                );
+              })
+              .join("");
+            return (
+              '<div class="ht-mega__group"><div class="ht-mega__group-head">' +
+              head +
+              '</div><ul class="ht-mega__group-list">' +
+              items +
+              "</ul></div>"
+            );
+          })
+          .join("") +
+        "</div>"
+      );
+    }
+
+    function buildMegaMenu() {
+      if (!menuRoot || !window.HT_MENU) return;
+      var data = window.HT_MENU;
+      var tabs = ["company", "platform", "iot", "ai", "hardware"];
+      var sidebar = tabs
+        .map(function (key) {
+          var section = data[key];
+          return (
+            '<button type="button" class="ht-mega__tab' +
+            (key === activePanel ? " is-active" : "") +
+            '" data-ht-menu-tab="' +
+            key +
+            '">' +
+            esc(section.title) +
+            "</button>"
+          );
+        })
+        .join("");
+
+      var panels = tabs
+        .map(function (key) {
+          var section = data[key];
+          var body = section.groups
+            ? groupedPanel(section.groups)
+            : '<div class="ht-mega__links">' + linkList(section.links) + "</div>";
+
+          return (
+            '<section class="ht-mega__panel' +
+            (key === activePanel ? " is-active" : "") +
+            '" data-ht-menu-panel="' +
+            key +
+            '" aria-hidden="' +
+            (key === activePanel ? "false" : "true") +
+            '">' +
+            '<div class="ht-mega__panel-head">' +
+            '<h2 class="ht-mega__title">' +
+            esc(section.title) +
+            "</h2>" +
+            '<a class="ht-mega__overview" href="' +
+            esc(section.href) +
+            '">View all <span aria-hidden="true">↗</span></a>' +
+            "</div>" +
+            '<div class="ht-mega__panel-body">' +
+            body +
+            "</div></section>"
+          );
+        })
+        .join("");
+
+      menuRoot.innerHTML =
+        '<aside class="ht-mega__sidebar">' +
+        '<button class="ht-mega__close" type="button" aria-label="Close menu">×</button>' +
+        '<nav class="ht-mega__tabs" aria-label="Menu sections">' +
+        sidebar +
+        "</nav>" +
+        '<div class="ht-mega__sidebar-foot">' +
+        '<a class="ht-mega__demo" href="https://hyperthings.ai/#demo">Request Demo <span aria-hidden="true">↗</span></a>' +
+        "</div></aside>" +
+        '<div class="ht-mega__main">' +
+        panels +
+        "</div>";
+    }
+
+    function setPanel(key) {
+      if (!menuRoot || !window.HT_MENU || !window.HT_MENU[key]) return;
+      activePanel = key;
+      menuRoot.querySelectorAll("[data-ht-menu-tab]").forEach(function (btn) {
+        btn.classList.toggle("is-active", btn.getAttribute("data-ht-menu-tab") === key);
+      });
+      menuRoot.querySelectorAll("[data-ht-menu-panel]").forEach(function (panel) {
+        var on = panel.getAttribute("data-ht-menu-panel") === key;
+        panel.classList.toggle("is-active", on);
+        panel.setAttribute("aria-hidden", on ? "false" : "true");
+      });
+    }
+
+    buildMegaMenu();
+
+    function openMenu(panelKey) {
+      if (!overlay) return;
+      if (panelKey) setPanel(panelKey);
+      overlay.classList.add("is-open");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      if (!overlay) return;
+      overlay.classList.remove("is-open");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    if (menuBtn) menuBtn.addEventListener("click", function () {
+      openMenu(activePanel || "company");
+    });
+
+    if (menuRoot) {
+      menuRoot.addEventListener("click", function (e) {
+        var tab = e.target.closest("[data-ht-menu-tab]");
+        if (tab) {
+          e.preventDefault();
+          setPanel(tab.getAttribute("data-ht-menu-tab"));
+          return;
+        }
+        if (e.target.closest(".ht-mega__close")) {
+          e.preventDefault();
+          closeMenu();
+        }
+      });
+    }
+
+    root.querySelectorAll("[data-ht-open-menu]").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        openMenu(link.getAttribute("data-ht-open-menu"));
+      });
+    });
+
+    if (overlay) {
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) closeMenu();
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
+    });
 
     // Boot entrance
     requestAnimationFrame(function () {
@@ -36,28 +221,6 @@
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    // Fullscreen menu
-    function openMenu() {
-      if (!overlay) return;
-      overlay.classList.add("is-open");
-      overlay.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-    function closeMenu() {
-      if (!overlay) return;
-      overlay.classList.remove("is-open");
-      overlay.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
-    if (menuBtn) menuBtn.addEventListener("click", openMenu);
-    if (closeBtn) closeBtn.addEventListener("click", closeMenu);
-    overlayLinks.forEach(function (a) {
-      a.addEventListener("click", closeMenu);
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMenu();
-    });
 
     // Mark stagger / CTA groups as reveal targets
     root.querySelectorAll(".ht-cards, .ht-news, .ht-mosaic, .ht-industries, .ht-cta").forEach(function (el) {

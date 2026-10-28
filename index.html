@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hyperthings — Building a Connected World with IoT</title>
   <meta name="description" content="Next-generation enterprise IoT platform. Connect, manage, and analyze devices at scale — cloud or on-premises." />
-  <link rel="stylesheet" href="assets/css/ht-home.css?v=27" />
+  <link rel="stylesheet" href="assets/css/ht-home.css?v=31" />
 </head>
 <body>
 <div class="ht-home">
@@ -20,32 +20,19 @@
         <img src="assets/images/hyperthings-logo-header.png" alt="Hyperthings — your new smart world" width="200" height="62" decoding="async" />
       </a>
       <nav class="ht-pill-nav" aria-label="Primary">
-        <a href="https://hyperthings.ai/company/">Company</a>
-        <a href="https://hyperthings.ai/platform/">Platform</a>
-        <a href="https://hyperthings.ai/solutions/">Solutions</a>
-        <a href="https://hyperthings.ai/services/">Services</a>
+        <a href="https://hyperthings.ai/company/" data-ht-open-menu="company">Company</a>
+        <a href="https://hyperthings.ai/platform/" data-ht-open-menu="platform">Platform</a>
+        <a href="https://hyperthings.ai/industries/" data-ht-open-menu="iot">IoT</a>
+        <a href="https://hyperthings.ai/knower-ai-platform/" data-ht-open-menu="ai">AI</a>
+        <a href="https://hyperthings.ai/products/" data-ht-open-menu="hardware">Hardware</a>
         <a class="ht-pill-cta" href="https://hyperthings.ai/#demo">Request Demo</a>
       </nav>
     </div>
   </header>
 
-  <!-- Overlay menu -->
+  <!-- Mega menu overlay -->
   <div class="ht-overlay" aria-hidden="true" role="dialog" aria-label="Main menu">
-    <div class="ht-overlay__top">
-      <a class="ht-logo" href="https://hyperthings.ai/" aria-label="Hyperthings home">
-        <img src="assets/images/hyperthings-logo-header.png" alt="Hyperthings — your new smart world" width="200" height="62" decoding="async" />
-      </a>
-      <button class="ht-overlay__close" type="button" aria-label="Close menu">×</button>
-    </div>
-    <nav class="ht-overlay__nav">
-      <a href="https://hyperthings.ai/">Home</a>
-      <a href="https://hyperthings.ai/company/">Company</a>
-      <a href="https://hyperthings.ai/platform/">Platform</a>
-      <a href="https://hyperthings.ai/solutions/">Solutions</a>
-      <a href="https://hyperthings.ai/services/">Services</a>
-      <a href="https://hyperthings.ai/hardware/">Hardware</a>
-      <a href="https://hyperthings.ai/#demo">Request Demo</a>
-    </nav>
+    <div class="ht-overlay__layout" data-ht-menu-root></div>
   </div>
 
   <!-- Hero -->
@@ -145,68 +132,6 @@
         <img src="assets/images/partners/forbes-marshall.png" alt="" aria-hidden="true" />
         <img src="assets/images/partners/al-othman.svg" alt="" aria-hidden="true" />
         <img src="assets/images/partners/kahramaa.png" alt="" aria-hidden="true" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Top stories -->
-  <section class="ht-section ht-section--soft ht-stories">
-    <div class="ht-wrap-wide">
-      <div class="ht-stories__head ht-reveal">
-        <div>
-          <p class="ht-label">Insights</p>
-          <h2 class="ht-heading" style="margin:0;font-size:clamp(1.5rem,3vw,2rem)">See What’s Happening in AI &amp; IoT Around the World</h2>
-        </div>
-        <div class="ht-stories__nav">
-          <button class="ht-nav-btn" type="button" data-ht-prev aria-label="Previous">‹</button>
-          <button class="ht-nav-btn" type="button" data-ht-next aria-label="Next">›</button>
-        </div>
-      </div>
-      <div class="ht-carousel" data-ht-carousel>
-        <article class="ht-story-card ht-reveal">
-          <div class="ht-story-card__media">
-            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80" alt="Team celebrating innovation award" />
-          </div>
-          <div class="ht-story-card__body">
-            <p class="ht-story-card__tag">Awards · July 2025</p>
-            <h3>HyperThink Systems secures two prestigious awards in the Deloitte Technology Fast 50</h3>
-            <p>Our 4th consecutive appearance — and recognition in the “Kiyadat” category for leadership in the regional tech ecosystem.</p>
-            <a class="ht-link" href="https://hyperthings.ai/">Read More <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-        <article class="ht-story-card ht-reveal ht-reveal-delay-1">
-          <div class="ht-story-card__media">
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80" alt="IoT data center infrastructure" />
-          </div>
-          <div class="ht-story-card__body">
-            <p class="ht-story-card__tag">Platform</p>
-            <h3>Hyperthings IoT Platform — cloud &amp; on-premises ready</h3>
-            <p>Enterprise-grade connectivity, device management, analytics, and container-based apps — scalable from pilot to city-wide deployment.</p>
-            <a class="ht-link" href="https://hyperthings.ai/platform/">Know More <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-        <article class="ht-story-card ht-reveal ht-reveal-delay-2">
-          <div class="ht-story-card__media">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80" alt="Smart city skyline" />
-          </div>
-          <div class="ht-story-card__body">
-            <p class="ht-story-card__tag">Smart City</p>
-            <h3>Open city platforms that put citizens first</h3>
-            <p>Device-agnostic connectivity for parking, waste, air quality, and more — monetize services while improving urban experience.</p>
-            <a class="ht-link" href="https://hyperthings.ai/solutions/">Know More <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-        <article class="ht-story-card">
-          <div class="ht-story-card__media">
-            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80" alt="Industrial IoT manufacturing" />
-          </div>
-          <div class="ht-story-card__body">
-            <p class="ht-story-card__tag">Industry</p>
-            <h3>From SCADA to predictive maintenance</h3>
-            <p>Plug-and-play industrial connectivity that turns machine data into actionable insights across manufacturing, logistics, and energy.</p>
-            <a class="ht-link" href="https://hyperthings.ai/solutions/">Know More <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
       </div>
     </div>
   </section>
@@ -561,6 +486,68 @@
     </div>
   </section>
 
+  <!-- Insights -->
+  <section class="ht-section ht-section--soft ht-stories">
+    <div class="ht-wrap-wide">
+      <div class="ht-stories__head ht-reveal">
+        <div>
+          <p class="ht-label">Insights</p>
+          <h2 class="ht-heading" style="margin:0;font-size:clamp(1.5rem,3vw,2rem)">See What’s Happening in AI &amp; IoT Around the World</h2>
+        </div>
+        <div class="ht-stories__nav">
+          <button class="ht-nav-btn" type="button" data-ht-prev aria-label="Previous">‹</button>
+          <button class="ht-nav-btn" type="button" data-ht-next aria-label="Next">›</button>
+        </div>
+      </div>
+      <div class="ht-carousel" data-ht-carousel>
+        <article class="ht-story-card ht-reveal">
+          <div class="ht-story-card__media">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80" alt="Team celebrating innovation award" />
+          </div>
+          <div class="ht-story-card__body">
+            <p class="ht-story-card__tag">Awards · July 2025</p>
+            <h3>HyperThink Systems secures two prestigious awards in the Deloitte Technology Fast 50</h3>
+            <p>Our 4th consecutive appearance — and recognition in the “Kiyadat” category for leadership in the regional tech ecosystem.</p>
+            <a class="ht-link" href="https://hyperthings.ai/">Read More <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="ht-story-card ht-reveal ht-reveal-delay-1">
+          <div class="ht-story-card__media">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80" alt="IoT data center infrastructure" />
+          </div>
+          <div class="ht-story-card__body">
+            <p class="ht-story-card__tag">Platform</p>
+            <h3>Hyperthings IoT Platform — cloud &amp; on-premises ready</h3>
+            <p>Enterprise-grade connectivity, device management, analytics, and container-based apps — scalable from pilot to city-wide deployment.</p>
+            <a class="ht-link" href="https://hyperthings.ai/platform/">Know More <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="ht-story-card ht-reveal ht-reveal-delay-2">
+          <div class="ht-story-card__media">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80" alt="Smart city skyline" />
+          </div>
+          <div class="ht-story-card__body">
+            <p class="ht-story-card__tag">Smart City</p>
+            <h3>Open city platforms that put citizens first</h3>
+            <p>Device-agnostic connectivity for parking, waste, air quality, and more — monetize services while improving urban experience.</p>
+            <a class="ht-link" href="https://hyperthings.ai/solutions/">Know More <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="ht-story-card">
+          <div class="ht-story-card__media">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80" alt="Industrial IoT manufacturing" />
+          </div>
+          <div class="ht-story-card__body">
+            <p class="ht-story-card__tag">Industry</p>
+            <h3>From SCADA to predictive maintenance</h3>
+            <p>Plug-and-play industrial connectivity that turns machine data into actionable insights across manufacturing, logistics, and energy.</p>
+            <a class="ht-link" href="https://hyperthings.ai/solutions/">Know More <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="ht-cta" id="demo">
     <div class="ht-cta__bg" aria-hidden="true"></div>
@@ -583,8 +570,9 @@
   </section>
 
 </div>
+<script src="assets/js/ht-menu-data.js?v=30"></script>
 <script src="assets/js/vendor/three.min.js"></script>
-<script src="assets/js/ht-globe.js?v=26"></script>
-<script src="assets/js/ht-home.js?v=26"></script>
+<script src="assets/js/ht-globe.js?v=30"></script>
+<script src="assets/js/ht-home.js?v=30"></script>
 </body>
 </html>
